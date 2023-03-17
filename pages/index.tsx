@@ -3,12 +3,15 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 
+import GameWindow from "@/components/GameWindow";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
     <>
       <h1>Typeland</h1>
+      <GameWindow />
     </>
   );
 }
