@@ -8,6 +8,8 @@ export default function App(props: AppProps) {
   return (
     <>
       <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
         theme={{
           components: {
             Container: {
@@ -22,6 +24,7 @@ export default function App(props: AppProps) {
               },
             },
           },
+          colorScheme: "dark",
         }}
       >
         <Container size="sm">
