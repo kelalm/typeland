@@ -3,6 +3,7 @@ import TextBox from "./TextBox";
 import Timer from "./Timer";
 import WPMBox from "./WPMBox";
 import TimeSelector from "./TimeSelector";
+import Results from "./Results";
 
 const GameWindow: React.FC = () => {
   const [typingStarted, setTypingStarted] = useState(false);
