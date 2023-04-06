@@ -9,6 +9,7 @@ const GameWindow: React.FC = () => {
   const [typingStarted, setTypingStarted] = useState(false);
   const [gameText, setGameText] = useState("");
   const [selectedTime, setSelectedTime] = useState<number>(0);
+  const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
     // Fetch text for TextBox
@@ -31,8 +32,11 @@ const GameWindow: React.FC = () => {
     <div>
       {!typingStarted && <TimeSelector setSelectedTime={setSelectedTime} />}
       <TextBox onTypingStarted={handleTypingStarted} gameText={gameText} />
-      {typingStarted && <Timer selectedTime={selectedTime} />}
-      {typingStarted && <WPMBox />}
+      {typingStarted && !gameOver && (
+        <Timer selectedTime={selectedTime} setGameOver={setGameOver} />
+      )}
+      {typingStarted && !gameOver && <WPMBox />}
+      {gameOver && <Results />}
     </div>
   );
 };

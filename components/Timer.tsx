@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-const Timer: React.FC<{ selectedTime: number }> = ({ selectedTime }) => {
+type Props = {
+  selectedTime: number;
+  setGameOver: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Timer: React.FC<Props> = ({ selectedTime, setGameOver }) => {
   const [time, setTime] = useState(0);
 
   useEffect(() => {
@@ -16,6 +21,7 @@ const Timer: React.FC<{ selectedTime: number }> = ({ selectedTime }) => {
       // do something when the selected time is reached
       console.log("Time complete.");
       // End game
+      setGameOver(true);
     }
   }, [time, selectedTime]);
 

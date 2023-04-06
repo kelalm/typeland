@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SegmentedControl } from "@mantine/core";
 
 export default function TimeSelector(props: {
   setSelectedTime: (time: number) => void;
 }) {
   const [selectedTime, setSelectedTimeState] = useState(15);
+
+  useEffect(() => {
+    props.setSelectedTime(selectedTime);
+  }, []);
+
   return (
     <SegmentedControl
       value={selectedTime.toString()}
