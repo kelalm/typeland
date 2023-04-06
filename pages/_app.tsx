@@ -27,7 +27,7 @@ export default function App(props: AppProps) {
           colorScheme: "dark",
         }}
       >
-        <Container size="sm">
+        <Container size="md">
           <Component {...pageProps} />
         </Container>
       </MantineProvider>
