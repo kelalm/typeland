@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Timer: React.FC = () => {
+const Timer: React.FC<{ selectedTime: number }> = ({ selectedTime }) => {
   const [time, setTime] = useState(0);
 
   useEffect(() => {
@@ -10,6 +10,14 @@ const Timer: React.FC = () => {
 
     return () => clearInterval(timerId);
   }, []);
+
+  useEffect(() => {
+    if (time >= selectedTime) {
+      // do something when the selected time is reached
+      console.log("Time complete.");
+      // End game
+    }
+  }, [time, selectedTime]);
 
   return <h1>{time}</h1>;
 };
