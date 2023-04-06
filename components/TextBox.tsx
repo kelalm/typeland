@@ -13,14 +13,7 @@ const TextBox: React.FC<TextBoxProps> = ({ onTypingStarted, gameText }) => {
 
   return (
     <>
-      <Textarea
-        placeholder={gameText}
-        // label="Your comment"
-        radius="lg"
-        size="xl"
-        withAsterisk
-        onChange={handleTyping}
-      />
+      <div></div>
     </>
   );
 };
