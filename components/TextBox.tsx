@@ -16,6 +16,8 @@ const TextBox: React.FC<TextBoxProps> = ({ onTypingStarted, gameText }) => {
     const value = event.target.value;
     const valueLength = value.length;
 
+    const lastEnteredLetter = value[valueLength - 1];
+
     debug(event);
 
     onTypingStarted();
@@ -26,13 +28,15 @@ const TextBox: React.FC<TextBoxProps> = ({ onTypingStarted, gameText }) => {
   const debug = (event: any) => {
     const value = event.target.value;
     const valueLength = value.length;
+    const lastEnteredLetter = value[valueLength - 1];
 
     console.log("Value");
     console.log(value);
     console.log(valueLength);
+    console.log(lastEnteredLetter);
   };
 
-  const words = gameText.split(" ");
+  const words = gameText.toLowerCase().split(" ");
   let charIndex = 0;
 
   return (
