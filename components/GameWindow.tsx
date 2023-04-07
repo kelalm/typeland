@@ -31,12 +31,13 @@ const GameWindow: React.FC = () => {
   return (
     <div>
       {!typingStarted && <TimeSelector setSelectedTime={setSelectedTime} />}
-      {!gameOver && (
-        <TextBox onTypingStarted={handleTypingStarted} gameText={gameText} />
-      )}
       {typingStarted && !gameOver && (
         <Timer selectedTime={selectedTime} setGameOver={setGameOver} />
       )}
+      {!gameOver && (
+        <TextBox onTypingStarted={handleTypingStarted} gameText={gameText} />
+      )}
+
       {typingStarted && !gameOver && <WPMBox />}
       {gameOver && <Results />}
     </div>

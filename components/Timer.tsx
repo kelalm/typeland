@@ -19,7 +19,7 @@ const Timer: React.FC<Props> = ({ selectedTime, setGameOver }) => {
   useEffect(() => {
     if (time >= selectedTime) {
       // do something when the selected time is reached
-      console.log("Time complete.");
+      console.log("Time Complete.");
       // End game
       setGameOver(true);
     }
