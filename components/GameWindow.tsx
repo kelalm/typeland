@@ -4,6 +4,7 @@ import Timer from "./Timer";
 import WPMBox from "./WPMBox";
 import TimeSelector from "./TimeSelector";
 import Results from "./Results";
+import InviteFriends from "./InviteFriends";
 
 const GameWindow: React.FC = () => {
   const [typingStarted, setTypingStarted] = useState(false);
@@ -30,6 +31,7 @@ const GameWindow: React.FC = () => {
 
   return (
     <div>
+      {!typingStarted && <InviteFriends />}
       {!typingStarted && <TimeSelector setSelectedTime={setSelectedTime} />}
       {typingStarted && !gameOver && (
         <Timer selectedTime={selectedTime} setGameOver={setGameOver} />
