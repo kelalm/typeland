@@ -33,12 +33,20 @@ const GameWindow: React.FC = () => {
 
   return (
     <div>
-      {!typingStarted && <InviteFriends />}
       {!typingStarted && (
         <PlayerModeSelector setSelectedPlayerMode={setSelectedPlayerMode} />
       )}
+
       <br />
       <br />
+
+      {!typingStarted && selectedPlayerMode == "multiplayer" && (
+        <InviteFriends />
+      )}
+
+      <br />
+      <br />
+
       {!typingStarted && <TimeSelector setSelectedTime={setSelectedTime} />}
 
       {typingStarted && !gameOver && (
