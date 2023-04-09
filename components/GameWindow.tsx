@@ -3,6 +3,7 @@ import TextBox from "./TextBox";
 import Timer from "./Timer";
 import WPMBox from "./WPMBox";
 import TimeSelector from "./TimeSelector";
+import PlayerModeSelector from "./PlayerModeSelector";
 import Results from "./Results";
 import InviteFriends from "./InviteFriends";
 
@@ -10,6 +11,7 @@ const GameWindow: React.FC = () => {
   const [typingStarted, setTypingStarted] = useState(false);
   const [gameText, setGameText] = useState("");
   const [selectedTime, setSelectedTime] = useState<number>(0);
+  const [selectedPlayerMode, setSelectedPlayerMode] = useState<string>("solo");
   const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
@@ -32,7 +34,13 @@ const GameWindow: React.FC = () => {
   return (
     <div>
       {!typingStarted && <InviteFriends />}
+      {!typingStarted && (
+        <PlayerModeSelector setSelectedPlayerMode={setSelectedPlayerMode} />
+      )}
+      <br />
+      <br />
       {!typingStarted && <TimeSelector setSelectedTime={setSelectedTime} />}
+
       {typingStarted && !gameOver && (
         <Timer selectedTime={selectedTime} setGameOver={setGameOver} />
       )}
