@@ -23,10 +23,11 @@ const GameWindow: React.FC = () => {
   }, []);
 
   const fetchData = () => {
-    fetch("https://baconipsum.com/api/?paras=1&type=all-meat")
+    fetch("https://random-word-api.herokuapp.com/word?number=100")
       .then((response) => response.json())
       .then((data) => {
-        setGameText(data[0]);
+        const words = data.join(" ");
+        setGameText(words);
       })
       .catch((error) => {
         console.log(error);
