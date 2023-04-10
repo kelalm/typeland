@@ -6,18 +6,23 @@ import TimeSelector from "./TimeSelector";
 import PlayerModeSelector from "./PlayerModeSelector";
 import Results from "./Results";
 import InviteFriends from "./InviteFriends";
+import ActionButton from "./ActionButton";
 
 const GameWindow: React.FC = () => {
+  console.log("GameWindow rendered");
   const [typingStarted, setTypingStarted] = useState(false);
   const [gameText, setGameText] = useState("");
   const [selectedTime, setSelectedTime] = useState<number>(0);
   const [selectedPlayerMode, setSelectedPlayerMode] = useState<string>("solo");
   const [gameOver, setGameOver] = useState(false);
   const [charactersTyped, setCharactersTyped] = useState(0);
+  const [textBoxInputValue, setTextBoxInputValue] = useState("");
 
   useEffect(() => {
-    // Fetch text for TextBox
-    // Using sample text for now
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
     fetch("https://baconipsum.com/api/?paras=1&type=all-meat")
       .then((response) => response.json())
       .then((data) => {
@@ -26,10 +31,21 @@ const GameWindow: React.FC = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  };
 
   const handleTypingStarted = () => {
     setTypingStarted(true);
+  };
+
+  const resetGame = () => {
+    console.log("Resetting game...");
+    setTypingStarted(false);
+    setSelectedPlayerMode("solo");
+    setGameOver(false);
+    setCharactersTyped(0);
+    setGameText("");
+    setTextBoxInputValue(""); // clear TextBox input value
+    fetchData(); // fetch new data on retry
   };
 
   return (
@@ -47,6 +63,7 @@ const GameWindow: React.FC = () => {
 
       <br />
       <br />
+      {<ActionButton onClick={resetGame} label="Retry" />}
 
       {!typingStarted && <TimeSelector setSelectedTime={setSelectedTime} />}
 
@@ -54,7 +71,12 @@ const GameWindow: React.FC = () => {
         <Timer selectedTime={selectedTime} setGameOver={setGameOver} />
       )}
       {!gameOver && (
-        <TextBox onTypingStarted={handleTypingStarted} gameText={gameText} />
+        <TextBox
+          onTypingStarted={handleTypingStarted}
+          gameText={gameText}
+          textBoxValue={textBoxInputValue}
+          setTextBoxValue={setTextBoxInputValue}
+        />
       )}
 
       {typingStarted && !gameOver && <WPMBox />}

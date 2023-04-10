@@ -5,9 +5,16 @@ import Cursor from "./Cursor";
 type TextBoxProps = {
   onTypingStarted: () => void;
   gameText: string;
+  textBoxValue: string;
+  setTextBoxValue: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const TextBox: React.FC<TextBoxProps> = ({ onTypingStarted, gameText }) => {
+const TextBox: React.FC<TextBoxProps> = ({
+  onTypingStarted,
+  gameText,
+  textBoxValue,
+  setTextBoxValue,
+}) => {
   const [inputValue, setInputValue] = useState("");
   const [lastMatchedIndex, setLastMatchedIndex] = useState(-1);
   const [runningIndex, setRunningIndex] = useState(-1);

@@ -4,7 +4,7 @@ export default function GameOverButtons() {
   return (
     <>
       <h2>Try again.</h2>
-      <ActionButton />
+      <ActionButton onClick={() => {}} label="Retry" />
     </>
   );
 }
