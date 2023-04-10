@@ -37,6 +37,10 @@ const TextBox: React.FC<TextBoxProps> = ({ onTypingStarted, gameText }) => {
   };
 
   const words = gameText.toLowerCase().split(" ");
+  const wordsWithSpace = words.flatMap((word, index) => {
+    return index === words.length - 1 ? [word] : [word, " "];
+  });
+
   let charIndex = 0;
 
   return (
@@ -44,7 +48,7 @@ const TextBox: React.FC<TextBoxProps> = ({ onTypingStarted, gameText }) => {
       <div>
         <Cursor />
         <Textarea value={inputValue} onChange={handleTyping} />
-        {words.map((word, wordIndex) => (
+        {wordsWithSpace.map((word, wordIndex) => (
           <div key={wordIndex}>
             {word.split("").map((character) => (
               <span

@@ -13,6 +13,7 @@ const GameWindow: React.FC = () => {
   const [selectedTime, setSelectedTime] = useState<number>(0);
   const [selectedPlayerMode, setSelectedPlayerMode] = useState<string>("solo");
   const [gameOver, setGameOver] = useState(false);
+  const [charactersTyped, setCharactersTyped] = useState(0);
 
   useEffect(() => {
     // Fetch text for TextBox
