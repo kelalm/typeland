@@ -1,9 +1,13 @@
 import { Card, Image, Text, Badge, Button, Group } from "@mantine/core";
 import LoadingBars from "./LoadingBars";
 import { useState, useEffect } from "react";
+import { Notification } from "@mantine/core";
+import { IconCheck } from "@tabler/icons-react";
+import CheckNotification from "./CheckNotification";
 
 export default function InviteFriends() {
   const [inviteLink, setInviteLink] = useState("");
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     console.log("hi");
@@ -13,10 +17,23 @@ export default function InviteFriends() {
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(inviteLink);
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000);
+  };
+
+  const handleCloseNotification = () => {
+    setShowNotification(false);
   };
 
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
+      {showNotification && (
+        <div style={{ position: "absolute", top: "1rem", right: "1rem" }}>
+          <CheckNotification onClose={handleCloseNotification} />
+        </div>
+      )}
       <Text size="sm" color="dimmed">
         <LoadingBars />
       </Text>
