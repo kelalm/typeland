@@ -8,7 +8,7 @@ import Results from "./Results";
 import InviteFriends from "./InviteFriends";
 import ActionButton from "./ActionButton";
 
-const GameWindow: React.FC = () => {
+export default function GameWindow() {
   console.log("GameWindow rendered");
   const [typingStarted, setTypingStarted] = useState(false);
   const [gameText, setGameText] = useState("");
@@ -84,6 +84,4 @@ const GameWindow: React.FC = () => {
       {gameOver && <Results />}
     </div>
   );
-};
-
-export default GameWindow;
+}
