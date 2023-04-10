@@ -4,16 +4,11 @@ import { useState, useEffect } from "react";
 import { Notification } from "@mantine/core";
 import { IconCheck } from "@tabler/icons-react";
 import CheckNotification from "./CheckNotification";
+import { nanoid } from "nanoid";
 
 export default function InviteFriends() {
-  const [inviteLink, setInviteLink] = useState("");
+  const [inviteLink, setInviteLink] = useState(nanoid(8));
   const [showNotification, setShowNotification] = useState(false);
-
-  useEffect(() => {
-    console.log("hi");
-    const newLink = "https://www.typelandtesting.com/join/fdskjfl";
-    setInviteLink(newLink);
-  }, []);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(inviteLink);
@@ -26,6 +21,11 @@ export default function InviteFriends() {
   const handleCloseNotification = () => {
     setShowNotification(false);
   };
+
+  useEffect(() => {
+    const newLink = nanoid(8);
+    setInviteLink(`https://www.typelandtesting.com/join/${newLink}`);
+  }, []);
 
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder>
@@ -41,7 +41,10 @@ export default function InviteFriends() {
         Waiting for more players...
       </Text>
       <Group position="apart" mt="md" mb="xs">
-        <Text weight={500}>Multiplayer Lobby - fdskjfl</Text>
+        <Text weight={500}>
+          Multiplayer Lobby -{" "}
+          {inviteLink.substring(inviteLink.lastIndexOf("/") + 1)}
+        </Text>
         <Badge color="pink" variant="light">
           1 player in lobby
         </Badge>
