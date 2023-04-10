@@ -56,7 +56,10 @@ const TextBox: React.FC<TextBoxProps> = ({
         <Cursor />
         <Textarea value={inputValue} onChange={handleTyping} />
         {wordsWithSpace.map((word, wordIndex) => (
-          <div key={wordIndex}>
+          <div
+            key={wordIndex}
+            style={{ display: "inline", marginRight: ".1rem" }}
+          >
             {word.split("").map((character) => (
               <span
                 key={charIndex++}

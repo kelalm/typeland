@@ -63,7 +63,6 @@ const GameWindow: React.FC = () => {
 
       <br />
       <br />
-      {<ActionButton onClick={resetGame} label="Retry" />}
 
       {!typingStarted && <TimeSelector setSelectedTime={setSelectedTime} />}
 
@@ -80,6 +79,7 @@ const GameWindow: React.FC = () => {
       )}
 
       {typingStarted && !gameOver && <WPMBox />}
+      {<ActionButton onClick={resetGame} label="Retry" />}
       {gameOver && <Results />}
     </div>
   );
