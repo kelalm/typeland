@@ -58,7 +58,11 @@ const TextBox: React.FC<TextBoxProps> = ({
         {wordsWithSpace.map((word, wordIndex) => (
           <div
             key={wordIndex}
-            style={{ display: "inline", marginRight: ".1rem" }}
+            style={{
+              display: "inline",
+              marginRight: ".1rem",
+              fontSize: "1.3rem",
+            }}
           >
             {word.split("").map((character) => (
               <span
